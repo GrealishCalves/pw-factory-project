@@ -24,7 +24,7 @@ export abstract class BasePage implements IBasePage {
 
   public async performActions(): Promise<void> {
     for (const action of this.actions) {
-      await this.formInteractions.performAction(action.LOCATOR, action.ACTION, action.VALUE);
+      await this.formInteractions.performAction({ ...action });
     }
   }
 }

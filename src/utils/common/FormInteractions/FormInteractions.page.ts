@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import { Action } from '../../../config-data';
 import { actionsMap } from '../actions/actions.map';
 
 export class FormInteractions {
@@ -6,16 +7,16 @@ export class FormInteractions {
   private validActions: { [key: string]: Function };
 
   constructor(page: Page) {
+    console.log('FormInteractions constructor called');
     this.page = page;
     this.validActions = actionsMap;
   }
 
-  public async performAction(locator: string, action: keyof typeof actionsMap, value?: string | null): Promise<void> {
-    const actionFunction = this.validActions[action];
+  public async performAction(obj: Action): Promise<void> {
+    const actionFunction = this.validActions[obj.ACTION];
     if (!actionFunction) {
-      throw new Error(`Invalid action: ${action}`);
+      throw new Error(`Invalid action: ${obj.ACTION}`);
     }
-    // this is like calling page.fill(locator, value) or page.click(locator)
-    await actionFunction(this.page, locator, value);
+    await actionFunction(this.page, obj);
   }
 }

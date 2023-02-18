@@ -3,7 +3,8 @@ import { actionsMap } from './utils/common/actions/actions.map';
 export interface Action {
   LOCATOR: string;
   ACTION: keyof typeof actionsMap;
-  VALUE: string | null;
+  VALUE?: string;
+  FRAME?: string;
 }
 
 export interface PageConfiguration<T> {
@@ -11,27 +12,63 @@ export interface PageConfiguration<T> {
   ACTIONS: T;
 }
 
+// export const configuration: {
+//   LOGIN_PAGE: PageConfiguration<Action[]>;
+//   MAIN_PAGE: PageConfiguration<Action[]>;
+// } = {
+//   LOGIN_PAGE: {
+//     URL: 'https://www.saucedemo.com/',
+//     ACTIONS: [
+//       {
+//         LOCATOR: '#user-name',
+//         ACTION: 'fill',
+//         VALUE: 'standard_user',
+//       },
+//       {
+//         LOCATOR: '#password',
+//         ACTION: 'fill',
+//         VALUE: 'secret_sauce',
+//       },
+//       {
+//         LOCATOR: '#login-button',
+//         ACTION: 'click',
+//         VALUE: null,
+//       },
+//     ],
+//   },
+//   MAIN_PAGE: {
+//     URL: 'test',
+//     ACTIONS: [],
+//   },
+// };
+
 export const configuration: {
   LOGIN_PAGE: PageConfiguration<Action[]>;
   MAIN_PAGE: PageConfiguration<Action[]>;
 } = {
   LOGIN_PAGE: {
-    URL: 'https://www.saucedemo.com/',
+    URL: 'https://services.cal-online.co.il/Card-Holders',
     ACTIONS: [
       {
-        LOCATOR: '#user-name',
+        LOCATOR: '#mat-input-0',
         ACTION: 'fill',
-        VALUE: 'standard_user',
+        VALUE: 'test',
+        FRAME: '#calconnectIframe',
       },
       {
-        LOCATOR: '#password',
+        LOCATOR: '#mat-input-1',
         ACTION: 'fill',
-        VALUE: 'secret_sauce',
+        VALUE: 'test',
+        FRAME: '#calconnectIframe',
       },
       {
-        LOCATOR: '#login-button',
+        LOCATOR: '#regular-login',
         ACTION: 'click',
-        VALUE: null,
+        FRAME: '#calconnectIframe',
+      },
+      {
+        LOCATOR: '#u1stLogoContainer',
+        ACTION: 'click',
       },
     ],
   },
@@ -40,5 +77,4 @@ export const configuration: {
     ACTIONS: [],
   },
 };
-
 
